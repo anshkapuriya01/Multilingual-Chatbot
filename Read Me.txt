@@ -1,0 +1,26 @@
+Steps to run the code.
+
+1. Install NodeJS in the system.
+2. Open command prompt and navigate to the backend folder 
+3. Run command "npm install" to install necessary library used in the code.
+4. Run command "npm start" to start the server. 
+5. Open live server by running index.html
+
+Note : The passwords are protected by bcrypt.
+
+
+Note : The server might show error due to no connection with the database. Suggesting to setup own database before running.
+
+Credentials for login :
+
+A. Division 1
+	1. Faculty : username :- faculty1 , Password :- password123 
+	2. Student : username :- student1 , Password :- password123 
+
+B. Division 2
+	1. Faculty : username :- faculty2 , Password :- password123 
+	2. Student : username :- student2 , Password :- password123 
+
+C. Division 3
+	1. Faculty : username :- faculty3 , Password :- password123 
+	2. Student : username :- student3 , Password :- password123 
