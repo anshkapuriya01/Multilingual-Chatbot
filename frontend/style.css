@@ -1,0 +1,669 @@
+/*
+  EduBot AI - Redesigned UI
+  Theme: Warm Clay & Parchment
+  Designer: Gemini
+  Date: 2025-09-04
+*/
+
+/* --------------------------------- */
+/* 1. Root & Globals          */
+/* --------------------------------- */
+:root {
+    /* New Color Palette */
+    --background-dark: #66545e; /* Dark Taupe */
+    --background-medium: #a39193; /* Muted Rose */
+    --accent-primary: #aa6f73; /* Rosewood */
+    --accent-secondary: #eea990; /* Apricot */
+    --text-primary: #f6e0b5; /* Pale Gold/Cream */
+
+    /* Derived Colors & Properties */
+    --background-card: rgba(102, 84, 94, 0.4);
+    --border-color: rgba(246, 224, 181, 0.2);
+    --shadow-color: rgba(43, 36, 39, 0.5);
+    --text-secondary-color: rgba(246, 224, 181, 0.6);
+    --error-color: #e57373;
+
+    --font-family: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    --border-radius-large: 24px;
+    --border-radius-medium: 16px;
+    --border-radius-small: 12px;
+    --transition-speed: 0.4s;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--background-dark);
+    color: var(--text-primary);
+    overflow: hidden;
+    line-height: 1.6;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --------------------------------- */
+/* 2. Animated Background       */
+/* --------------------------------- */
+.main-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(315deg, var(--background-dark), #4f3f47, var(--accent-primary), var(--background-medium));
+    background-size: 400% 400%;
+    animation: gradientDrift 25s ease infinite;
+    z-index: -1;
+}
+
+/* Removing the old span-based background elements */
+.main-background span {
+    display: none;
+}
+
+
+/* --------------------------------- */
+/* 3. Core Layout & Cards       */
+/* --------------------------------- */
+.page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: pageFadeIn 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+}
+
+.glass-card {
+    background: var(--background-card);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 12px 40px 0 var(--shadow-color);
+    border-radius: var(--border-radius-large);
+    transition: all var(--transition-speed) ease;
+}
+
+
+/* --------------------------------- */
+/* 4. Login Page             */
+/* --------------------------------- */
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 2rem;
+}
+
+/* Overriding .login-box to use the new card style */
+.login-box {
+    background: var(--background-card);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 3rem;
+    border-radius: var(--border-radius-large);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 12px 40px 0 var(--shadow-color);
+    text-align: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    animation: logoPulse 4s infinite ease-in-out;
+}
+
+.logo .fa-robot {
+    font-size: 2.5rem;
+    color: var(--accent-secondary);
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.login-subtitle {
+    margin-bottom: 2.5rem;
+    color: var(--text-secondary-color);
+    font-size: 1.1rem;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary-color);
+    font-size: 0.9rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    border-radius: 4px 4px 0 0;
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--text-primary);
+    transition: all var(--transition-speed) ease;
+    position: relative;
+}
+
+.form-control:focus {
+    outline: none;
+    border-bottom-color: var(--accent-secondary);
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 20px rgba(238, 169, 144, 0.1);
+}
+
+.btn {
+    padding: 0.85rem 1.75rem;
+    border: none;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all var(--transition-speed) cubic-bezier(0.19, 1, 0.22, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: width var(--transition-speed) ease;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    width: 100%;
+}
+
+.btn--primary {
+    background: linear-gradient(135deg, var(--accent-primary), #c48a8e);
+    color: white;
+    box-shadow: 0 6px 25px rgba(170, 111, 115, 0.4);
+}
+
+.btn--primary:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(170, 111, 115, 0.6);
+}
+
+.login-error-msg {
+    background-color: rgba(229, 115, 115, 0.1);
+    border: 1px solid var(--error-color);
+    color: var(--error-color);
+    padding: 1rem;
+    border-radius: var(--border-radius-small);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    animation: shake 0.6s ease-in-out;
+}
+
+/* --------------------------------- */
+/* 5. Chat Interface          */
+/* --------------------------------- */
+
+.chat-layout,
+.admin-layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    gap: 1.5rem;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.new-chat-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem;
+    border-radius: var(--border-radius-medium);
+    background: linear-gradient(135deg, var(--accent-secondary), #f8c3ab);
+    color: var(--background-dark);
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(238, 169, 144, 0.3);
+    animation: new-chat-btn-subtle-pulse 3s infinite ease-in-out;
+}
+
+.new-chat-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(238, 169, 144, 0.5);
+    animation: none;
+}
+
+.new-chat-icon {
+    margin-right: 0.75rem;
+    transition: transform var(--transition-speed) ease;
+}
+
+.new-chat-btn:hover .new-chat-icon {
+    transform: rotate(90deg);
+}
+
+.chat-history-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 0.5rem; /* for custom scrollbar */
+}
+
+.chat-history-container h4 {
+    color: var(--text-secondary-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0 0.5rem;
+}
+
+.chat-history-list li {
+    padding: 0.85rem 1rem;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    transition: all var(--transition-speed) ease;
+    color: var(--text-secondary-color);
+    position: relative;
+    padding-left: 2.5rem; /* Space for icon */
+}
+
+.chat-history-list li::before {
+    content: "\f075"; /* Font Awesome chat icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 400;
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all var(--transition-speed) ease;
+}
+
+.chat-history-list li:hover {
+    background-color: rgba(246, 224, 181, 0.1);
+    transform: translateX(8px);
+    color: var(--text-primary);
+}
+
+.chat-history-list li.active {
+    background: var(--accent-primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(170, 111, 115, 0.4);
+    font-weight: 500;
+}
+
+.chat-history-list li.active::before {
+    transform: translateY(-50%) scale(1.1);
+    color: white;
+}
+
+.sidebar-footer {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+}
+
+/* Main Chat Area */
+.chat-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.message {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    max-width: 80%;
+    animation: message-pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.message.user {
+    margin-left: auto;
+    flex-direction: row-reverse;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.message:hover .message-avatar {
+    transform: scale(1.1) rotate(-8deg);
+}
+
+.message.user .message-avatar {
+    background: linear-gradient(45deg, var(--accent-primary), #c48a8e);
+}
+
+.message.bot .message-avatar {
+    background: linear-gradient(45deg, var(--background-medium), #bdaabc);
+}
+
+.message-bubble {
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius-medium);
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    box-shadow: 0 4px 15px rgba(43, 36, 39, 0.2);
+}
+
+.message.user .message-bubble {
+    background: var(--accent-primary);
+    color: white;
+    border-top-right-radius: 8px;
+}
+
+.message.bot .message-bubble {
+    background-color: var(--background-dark);
+    color: var(--text-primary);
+    border-top-left-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+/* Chat Input */
+.chat-input-container {
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: var(--border-radius-large);
+}
+
+.input-group {
+    display: flex;
+    gap: 0.75rem;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: var(--border-radius-medium);
+    padding: 0.5rem;
+    align-items: center;
+    border: 1px solid transparent;
+    transition: all var(--transition-speed) ease;
+}
+
+.input-group:focus-within {
+    border-color: var(--accent-secondary);
+    box-shadow: 0 0 20px rgba(238, 169, 144, 0.2);
+}
+
+.user-input {
+    flex-grow: 1;
+    border: none;
+    background: transparent;
+    font-size: 1.1rem;
+    outline: none;
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+}
+
+.send-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    color: white;
+    box-shadow: 0 2px 10px rgba(170, 111, 115, 0.4);
+    animation: send-button-gentle-throb 3s infinite ease-in-out;
+}
+
+.send-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(170, 111, 115, 0.6);
+    animation: none;
+}
+
+.send-icon {
+    transition: transform var(--transition-speed) ease;
+}
+
+.send-btn:hover .send-icon {
+    transform: rotate(45deg);
+}
+
+
+/* Welcome Message */
+.welcome-message .fa-robot {
+    font-size: 5rem;
+    color: var(--accent-secondary);
+    margin-bottom: 1.5rem;
+    animation: robot-gentle-float 4s ease-in-out infinite;
+}
+
+
+/* --------------------------------- */
+/* 6. Admin Panel             */
+/* --------------------------------- */
+
+.admin-sidebar {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.admin-sidebar-header {
+    text-align: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-nav-link {
+    /* ... existing styles */
+    position: relative;
+    transition: all var(--transition-speed) ease;
+    padding: 1.2rem;
+    border-radius: var(--border-radius-medium);
+}
+
+.admin-nav-link i {
+    transition: transform var(--transition-speed) ease;
+}
+
+.admin-nav-link:hover {
+    background-color: rgba(246, 224, 181, 0.1);
+    color: var(--text-primary);
+    transform: translateX(10px);
+}
+
+.admin-nav-link:hover i {
+    transform: scale(1.1);
+}
+
+.admin-nav-link.active {
+    background-color: var(--accent-primary);
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(170, 111, 115, 0.4);
+}
+
+.admin-content-card {
+    flex-grow: 1;
+    padding: 3rem;
+    overflow-y: auto;
+}
+
+.upload-dropzone {
+    border: 2px dashed var(--border-color);
+    padding: 3rem;
+    text-align: center;
+    border-radius: var(--border-radius-medium);
+    cursor: pointer;
+    margin: 2rem 0;
+    transition: all var(--transition-speed) ease;
+    background: rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.upload-dropzone:hover,
+.upload-dropzone.dragover {
+    border-color: var(--accent-secondary);
+    background-color: rgba(238, 169, 144, 0.1);
+    transform: scale(1.02);
+    box-shadow: 0 0 25px rgba(238, 169, 144, 0.2);
+}
+
+.upload-dropzone i {
+    font-size: 3rem;
+    color: var(--accent-secondary);
+    margin-bottom: 1rem;
+    animation: upload-icon-bob 3s ease-in-out infinite;
+}
+
+/* --------------------------------- */
+/* 7. Utility Classes          */
+/* --------------------------------- */
+.loading-overlay {
+    /* ... existing styles */
+    background: rgba(102, 84, 94, 0.7);
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(246, 224, 181, 0.2);
+    border-top-color: var(--accent-secondary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.toast {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+
+/* --------------------------------- */
+/* 8. Keyframes & Animations   */
+/* --------------------------------- */
+@keyframes gradientDrift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes logoPulse {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(238, 169, 144, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 25px rgba(238, 169, 144, 0.9);
+    }
+}
+
+@keyframes new-chat-btn-subtle-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+@keyframes message-pop-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes robot-gentle-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes send-button-gentle-throb {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+}
+
+@keyframes upload-icon-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Re-using existing functional animations but they can be customized further */
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* Custom Scrollbar for a polished look */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--background-medium);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-primary);
+}
+
+/*
+  NOTE: Many styles from the original CSS file for elements like Analytics, 
+  Manage Documents, etc., will automatically inherit the new look from the 
+  redesigned base classes (.glass-card, .btn, .form-control). This CSS 
+  focuses on establishing the new design system and enhancing the most
+  prominent UI components. You can add more specific overrides if needed.
+*/
