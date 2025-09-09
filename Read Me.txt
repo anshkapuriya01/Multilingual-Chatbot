@@ -23,4 +23,10 @@ B. Division 2
 
 C. Division 3
 	1. Faculty : username :- faculty3 , Password :- password123 
+
 	2. Student : username :- student3 , Password :- password123 
+
+Note : .env file is not there in the source code provided. 
+1. Generarte the API keys from platforms of your choice (Google Ai Studious Recommended).
+2. create a file named ".env" and save your API keys there.
+3. GEMINI_API_KEY="Your API key".
